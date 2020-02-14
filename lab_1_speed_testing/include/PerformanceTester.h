@@ -15,23 +15,36 @@
 class PerformanceTester {
 
 public:
-    PerformanceTester(std::string f_name, const AbstractCastDoubleFunction *subject);
+    PerformanceTester(std::string f_name, const AbstractCastDoubleFunction &subject);
 
-    PerformanceTester(const std::vector<double> *data, const AbstractCastDoubleFunction *subject);
+    PerformanceTester(const AbstractCastDoubleFunction &subject);
+
+    PerformanceTester(const PerformanceTester &other);
+
+    ~PerformanceTester();
+
+    PerformanceTester &operator=(const PerformanceTester &arg);
+
+    void load_data(const std::string &f_name);
 
     void test(int times = 1);
 
+    void print_data();
+
 private:
-    const AbstractCastDoubleFunction *subject;
-    const std::vector<double> *data;
+    const AbstractCastDoubleFunction &subject;
+    std::vector<double> *data{};
     std::chrono::duration_values<std::chrono::seconds> sec;
     std::chrono::duration_values<std::chrono::milliseconds> m_sec;
     std::chrono::duration_values<std::chrono::microseconds> u_sec;
 
-private:
-    static std::vector<double> *load_data(std::string f_name);
+    void swap(PerformanceTester &other);
 
-    void update_time_record(/* TODO: diside vhich parameters consider use generic */);
+    void update_time_record(std::chrono::duration_values<std::chrono::seconds> n_sec);
+
+    void update_time_record(std::chrono::duration_values<std::chrono::milliseconds> nm_sec);
+
+    void update_time_record(std::chrono::duration_values<std::chrono::microseconds> nu_sec);
 };
 
 

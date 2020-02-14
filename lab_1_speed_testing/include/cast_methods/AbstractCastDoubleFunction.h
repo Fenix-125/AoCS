@@ -9,7 +9,10 @@
 #include <string>
 
 class AbstractCastDoubleFunction {
+public:
     virtual std::string cast(double value) = 0;
+
+    virtual ~AbstractCastDoubleFunction() = default;
 };
 
 
