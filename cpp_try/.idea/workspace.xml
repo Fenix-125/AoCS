@@ -12,27 +12,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b495132e-4712-4153-93ee-07846861e9d7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/f_inp.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lab_1_speed_testing/scripts/test_double_cast_performance.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpp_try.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpp_try.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpp_try.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpp_try.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_1_speed_testing/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../lab_1_speed_testing/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../lab_1_speed_testing/include/PerformanceTester.h" beforeDir="false" afterPath="$PROJECT_DIR$/../lab_1_speed_testing/include/PerformanceTester.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_1_speed_testing/include/cast_methods/AbstractCastDoubleFunction.h" beforeDir="false" afterPath="$PROJECT_DIR$/../lab_1_speed_testing/include/cast_methods/AbstractCastDoubleFunction.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_1_speed_testing/include/cast_methods/StreamCast.h" beforeDir="false" afterPath="$PROJECT_DIR$/../lab_1_speed_testing/include/cast_methods/StreamCast.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_1_speed_testing/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../lab_1_speed_testing/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_1_speed_testing/scripts/test_file_gen.py" beforeDir="false" afterPath="$PROJECT_DIR$/../lab_1_speed_testing/scripts/test_file_gen.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../lab_1_speed_testing/src/PerformanceTester.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../lab_1_speed_testing/src/PerformanceTester.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_1_speed_testing/src/cast_methods/AbstractCastDoubleFunction.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab_1_speed_testing/tmp/doubles_1MB.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../lab_1_speed_testing/tmp/doubles_1MB.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +74,8 @@
       <workItem from="1581001140714" duration="1869000" />
       <workItem from="1581606783057" duration="6232000" />
       <workItem from="1581667946069" duration="101000" />
-      <workItem from="1581685975757" duration="4723000" />
+      <workItem from="1581685975757" duration="4918000" />
+      <workItem from="1581763852939" duration="124000" />
     </task>
     <servers />
   </component>

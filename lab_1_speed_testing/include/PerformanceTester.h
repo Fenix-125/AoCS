@@ -9,15 +9,16 @@
 #include <string>
 #include <vector>
 #include <chrono>
+#include <climits>
 #include "cast_methods/AbstractCastDoubleFunction.h"
 
 
 class PerformanceTester {
 
 public:
-    PerformanceTester(std::string f_name, const AbstractCastDoubleFunction &subject);
+    PerformanceTester(const std::string &f_name, AbstractCastDoubleFunction *subject);
 
-    PerformanceTester(const AbstractCastDoubleFunction &subject);
+    PerformanceTester(AbstractCastDoubleFunction *subject);
 
     PerformanceTester(const PerformanceTester &other);
 
@@ -27,24 +28,23 @@ public:
 
     void load_data(const std::string &f_name);
 
-    void test(int times = 1);
+    void test(long long times = 1);
 
     void print_data();
 
 private:
-    const AbstractCastDoubleFunction &subject;
+    AbstractCastDoubleFunction *subject;
     std::vector<double> *data{};
-    std::chrono::duration_values<std::chrono::seconds> sec;
-    std::chrono::duration_values<std::chrono::milliseconds> m_sec;
-    std::chrono::duration_values<std::chrono::microseconds> u_sec;
+    long long sec = LLONG_MAX;
+    long long m_sec = LLONG_MAX;
+    long long u_sec = LLONG_MAX;
 
     void swap(PerformanceTester &other);
 
-    void update_time_record(std::chrono::duration_values<std::chrono::seconds> n_sec);
+    void update_time_record(std::chrono::high_resolution_clock::time_point start,
+                            std::chrono::high_resolution_clock::time_point finish,
+                            long long times = 1);
 
-    void update_time_record(std::chrono::duration_values<std::chrono::milliseconds> nm_sec);
-
-    void update_time_record(std::chrono::duration_values<std::chrono::microseconds> nu_sec);
 };
 
 

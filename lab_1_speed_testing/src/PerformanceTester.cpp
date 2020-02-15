@@ -6,16 +6,20 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <chrono>
+#include <atomic>
 
 
-PerformanceTester::PerformanceTester(std::string f_name, const AbstractCastDoubleFunction &subject) : subject(subject) {
+PerformanceTester::PerformanceTester(const std::string &f_name, AbstractCastDoubleFunction *subject) : subject(
+        subject) {
     load_data(f_name);
 }
 
-PerformanceTester::PerformanceTester(const AbstractCastDoubleFunction &subject)
+PerformanceTester::PerformanceTester(AbstractCastDoubleFunction *subject)
         : subject(subject), data(nullptr) {}
 
-PerformanceTester::PerformanceTester(const PerformanceTester &other) : subject(other.subject), data(nullptr) {
+PerformanceTester::PerformanceTester(const PerformanceTester &other) : subject(other.subject),
+                                                                       data(new std::vector<double>{*other.data}) {
 }
 
 PerformanceTester::~PerformanceTester() {
@@ -24,6 +28,7 @@ PerformanceTester::~PerformanceTester() {
 
 void PerformanceTester::swap(PerformanceTester &other) {
     std::swap(data, other.data);
+    std::swap(subject, other.subject);
 }
 
 PerformanceTester &PerformanceTester::operator=(const PerformanceTester &arg) {
@@ -33,12 +38,35 @@ PerformanceTester &PerformanceTester::operator=(const PerformanceTester &arg) {
     return *this;
 }
 
-// default 'times' value is 1
-void PerformanceTester::test(int times) {
-//    TODO: implement test call and result update
 
+static inline std::chrono::high_resolution_clock::time_point get_current_time_fenced() {
+    std::atomic_thread_fence(std::memory_order_seq_cst);
+    auto res_time = std::chrono::high_resolution_clock::now();
+    std::atomic_thread_fence(std::memory_order_seq_cst);
+    return res_time;
 }
 
+template<class D>
+static inline long long to_us(const D &d) {
+    return std::chrono::duration_cast<std::chrono::microseconds>(d).count();
+}
+
+// default 'times' value is 1
+void PerformanceTester::test(long long times) {
+    auto start = get_current_time_fenced();
+
+    for (int i = 0; i < times; ++i) {
+        for (auto &elem : *data) {
+            // TODO: implement the result save (to a vector and than to a file)
+            subject->cast(elem);
+        }
+    }
+
+    auto finish = get_current_time_fenced();
+    update_time_record(start, finish, times);
+}
+
+// source: https://web.archive.org/web/20180314195042/http://cpp.indi.frih.net/blog/2014/09/how-to-read-an-entire-file-into-memory-in-cpp/
 template<typename CharT, typename Traits,
         typename Allocator = std::allocator<CharT>>
 static auto read_stream_into_string(std::basic_istream<CharT, Traits> &in, Allocator alloc = {}) {
@@ -68,20 +96,16 @@ void PerformanceTester::load_data(const std::string &f_name) {
     file.close();
 }
 
-void PerformanceTester::update_time_record(std::chrono::duration_values<std::chrono::seconds> n_sec) {
-    sec = n_sec;
+// default 'times' value is 1
+void PerformanceTester::update_time_record(std::chrono::high_resolution_clock::time_point start,
+                                           std::chrono::high_resolution_clock::time_point finish, long long times) {
+    sec = std::chrono::duration_cast<std::chrono::seconds>(finish - start).count() / times;
+    m_sec = std::chrono::duration_cast<std::chrono::milliseconds>(finish - start).count() / times;
+    u_sec = std::chrono::duration_cast<std::chrono::microseconds>(finish - start).count() / times;
 }
 
 void PerformanceTester::print_data() {
     for (auto &elem : *data) {
         printf("%.14lf\n", elem);
     }
-}
-
-void PerformanceTester::update_time_record(std::chrono::duration_values<std::chrono::milliseconds> nm_sec) {
-    m_sec = nm_sec;
-}
-
-void PerformanceTester::update_time_record(std::chrono::duration_values<std::chrono::microseconds> nu_sec) {
-    u_sec = nu_sec;
 }
