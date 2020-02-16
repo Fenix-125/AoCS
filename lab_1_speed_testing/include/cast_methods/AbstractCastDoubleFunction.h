@@ -13,6 +13,10 @@ public:
     virtual std::string cast(double value) = 0;
 
     virtual ~AbstractCastDoubleFunction() = default;
+
+    virtual std::string get_description() const = 0;
+
+    virtual std::string get_name() const = 0;
 };
 
 

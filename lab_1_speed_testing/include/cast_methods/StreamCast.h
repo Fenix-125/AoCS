@@ -11,8 +11,14 @@
 
 class StreamCast : public AbstractCastDoubleFunction {
 public:
-    StreamCast() {}
+    StreamCast() = default;
+
     std::string cast(double value) override;
+
+    std::string get_description() const override;
+
+    std::string get_name() const override;
+
 
 private:
     std::ostringstream stream;

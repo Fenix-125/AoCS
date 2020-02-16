@@ -11,3 +11,11 @@ std::string StreamCast::cast(double value) {
     stream << value;
     return std::string();
 }
+
+std::string StreamCast::get_description() const {
+    return "Use streams to cast double to string.";
+}
+
+std::string StreamCast::get_name() const {
+    return "StreamCast";
+}
