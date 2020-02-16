@@ -34,7 +34,7 @@ static auto read_stream_into_string(std::basic_istream<CharT, Traits> &in, Alloc
 
 // #########################   CLASS METHODS  #########################
 PerformanceTester::PerformanceTester(const std::string &f_name, AbstractCastDoubleFunction *subject)
-        : subject(subject), data(nullptr) { load_data(f_name); }
+        : subject(subject), data(nullptr) { _load_data(f_name); }
 
 PerformanceTester::PerformanceTester(const std::vector<double> *data_set, AbstractCastDoubleFunction *subject)
         : data(data_set), subject(subject) {}
@@ -47,7 +47,7 @@ PerformanceTester::~PerformanceTester() { delete data; }
 PerformanceTester &PerformanceTester::operator=(const PerformanceTester &arg) {
     if (&arg == this) { return *this; }
     PerformanceTester temp{arg};
-    temp.swap(*this);
+    temp._swap(*this);
     return *this;
 }
 
@@ -62,15 +62,44 @@ void PerformanceTester::run_speed_test(long long times) {
     }
 
     auto finish = get_current_time_fenced();
-    update_time_record(start, finish, times);
+    _update_time_record(start, finish, times);
 }
 
-void PerformanceTester::calculate_cast_result() {
+void PerformanceTester::_calculate_cast_result() {
     char_count = 0;
     for (auto &elem : *data) {
         char_count += subject->cast(elem).length();
     }
     avg_num_length = (double) char_count / data->size();
+}
+
+std::string PerformanceTester::get_result() {
+    if (avg_num_length < 0) {
+        _calculate_cast_result();
+    }
+    if (sec == LLONG_MAX) {
+        run_speed_test();
+    }
+    std::stringstream result;
+    result << "Casting double using " << subject->get_name() << ":"
+           << "\nTool description:\n\t" << subject->get_description()
+           << "\nSpeed test:"
+              "\n\tSeconds:\t" << sec
+           << "\n\tMilliseconds:\t" << m_sec
+           << "\n\tMicroseconds:\t" << u_sec
+           << "\n\tCharacters number:\t" << char_count
+           << "\nAvg numbers length:\t" << avg_num_length;
+    return result.str();
+}
+
+void PerformanceTester::dump_result(const std::string &file_name) {
+    std::ofstream file(file_name, std::ofstream::out);
+    // TODO: test dumping
+    file << get_result() << std::endl;
+    for (auto &elem : *data) {
+        file << subject->cast(elem) << "\n";
+    }
+    file.close();
 }
 
 void PerformanceTester::print_data() const {
@@ -80,20 +109,20 @@ void PerformanceTester::print_data() const {
 }
 
 // default 'times' value is 1
-void PerformanceTester::update_time_record(std::chrono::high_resolution_clock::time_point start,
-                                           std::chrono::high_resolution_clock::time_point finish,
-                                           long long times) {
+void PerformanceTester::_update_time_record(std::chrono::high_resolution_clock::time_point start,
+                                            std::chrono::high_resolution_clock::time_point finish,
+                                            long long times) {
     sec = std::min(std::chrono::duration_cast<std::chrono::seconds>(finish - start).count() / times, sec);
     m_sec = std::min(std::chrono::duration_cast<std::chrono::milliseconds>(finish - start).count() / times, m_sec);
     u_sec = std::min(std::chrono::duration_cast<std::chrono::microseconds>(finish - start).count() / times, u_sec);
 }
 
-void PerformanceTester::swap(PerformanceTester &other) {
+void PerformanceTester::_swap(PerformanceTester &other) {
     std::swap(data, other.data);
     std::swap(subject, other.subject);
 }
 
-void PerformanceTester::load_data(const std::string &f_name) {
+void PerformanceTester::_load_data(const std::string &f_name) {
     auto *tmp_data = new std::vector<double>();
     std::ifstream file(f_name);
     std::istringstream str_stream(read_stream_into_string(file));

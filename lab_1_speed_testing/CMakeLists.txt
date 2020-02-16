@@ -3,9 +3,10 @@ project(lab_1_speed_testing)
 
 set(CMAKE_CXX_STANDARD 14)
 
+#set(CMAKE_VERBOSE_MAKEFILE ON)
+set(CMAKE_BUILD_TYPE Debug)
+#set(CMAKE_BUILD_TYPE Release)
 
-#set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_BUILD_TYPE Release)
 
 file(GLOB_RECURSE SRC "include/*.h" "src/*.cpp")
 

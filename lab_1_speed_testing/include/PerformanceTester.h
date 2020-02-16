@@ -28,9 +28,9 @@ public:
 
     void run_speed_test(long long times = 1);
 
-    std::string get_result() const;
+    std::string get_result();
 
-    void dump_result(std::string file_name) const;
+    void dump_result(const std::string &file_name);
 
     void print_data() const;
 
@@ -46,15 +46,15 @@ private:
     double avg_num_length = -1.0;
     unsigned long long char_count = 0;
 
-    void load_data(const std::string &f_name);
+    void _load_data(const std::string &f_name);
 
-    void swap(PerformanceTester &other);
+    void _swap(PerformanceTester &other);
 
-    void update_time_record(std::chrono::high_resolution_clock::time_point start,
-                            std::chrono::high_resolution_clock::time_point finish,
-                            long long times = 1);
+    void _update_time_record(std::chrono::high_resolution_clock::time_point start,
+                             std::chrono::high_resolution_clock::time_point finish,
+                             long long times = 1);
 
-    void calculate_cast_result();
+    void _calculate_cast_result();
 
 };
 
