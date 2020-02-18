@@ -158,6 +158,6 @@ if __name__ == '__main__':
     with open(file_in, 'r') as file:
         origin_data = [line.strip() for line in file.readlines()]
     print("Test cast double to string by:")
-    for mode in range(1, 4):
+    for mode in range(1, 5):
         result = test_mode(mode, n, file_in, file_out)
         print(render_result(result))

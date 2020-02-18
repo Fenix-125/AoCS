@@ -5,6 +5,7 @@
 #include "include/cast_methods/StreamCast.h"
 #include "include/cast_methods/ToStringCast.h"
 #include "include/cast_methods/BoostLexicalCast.h"
+#include "include/cast_methods/QsNumberCast.h"
 
 static bool is_number(std::string s) {
     std::string::const_iterator it;
@@ -43,6 +44,9 @@ int main(int argc, char **argv) {
             break;
         case 3:
             test_func = new BoostLexicalCast();
+            break;
+        case 4:
+            test_func = new QsNumberCast();
             break;
         default:
             std::cerr << "Invalid first command line argument (program mode)!" << std::endl;
