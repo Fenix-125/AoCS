@@ -1,12 +1,12 @@
 ## Lab 1 (performance testing)
 
-**Topic:** Test numeric-string casting tools performance <br>
-**Task:** Casting of a number (double) into a string. Test it on input file.
-          Result -- sum of all chars in strings and their average length. <br>
-**Task Number:** 4 <br>
-**Author:** Yuriy Pasichnyk <br> 
+    Topic:      Test numeric-string casting tools performance
+    Task:       Casting of a number (double) into a string. Test it on input file.
+                Result -- sum of all chars in strings and their average length.
+    Task Number:    4
+    Author:         Yuriy Pasichnyk 
 ----
-##### To start run ```./run.sh``` or ```bash run.sh``` (details in the usage section)
+### To start run ```./run.sh``` or ```bash run.sh``` (details in the usage section)
 
 ### Project Structure
 
