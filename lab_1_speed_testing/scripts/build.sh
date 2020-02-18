@@ -6,4 +6,5 @@ cmake -G"Unix Makefiles" ..
 make
 cd ..
 mkdir tmp -p
-test_file_gen.py
+if [[ -f tmp/doubles_1MB.txt ]]; then rm tmp/doubles_1MB.txt; fi
+python3.8 scripts/test_file_gen.py

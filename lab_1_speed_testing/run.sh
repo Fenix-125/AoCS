@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-if [! -d tmp]; then
-    scripts/build.sh
+if [[ ! -d tmp ]]; then
+    bash scripts/build.sh
 fi
 
-scripts/test_double_cast_performance.py 1000 tmp/doubles_1MB.txt tmp/resul.txt
+python3.8 scripts/test_double_cast_performance.py 6 tmp/doubles_1MB.txt tmp/resul.txt

@@ -1,3 +1,5 @@
+#! /bin/python3.8
+
 from os.path import isfile
 from subprocess import Popen, PIPE
 from sys import argv
