@@ -4,11 +4,10 @@
 
 #include "../include/PerformanceTester.h"
 #include <fstream>
-#include <iostream>
 #include <sstream>
 #include <chrono>
 #include <atomic>
-
+#include <boost/filesystem.hpp>
 
 // ######################### HELPER FUNCTIONS #########################
 static inline std::chrono::high_resolution_clock::time_point get_current_time_fenced() {
@@ -37,7 +36,7 @@ PerformanceTester::PerformanceTester(const std::string &f_name, AbstractCastDoub
         : subject(subject), data(nullptr) { _load_data(f_name); }
 
 PerformanceTester::PerformanceTester(const std::vector<double> *data_set, AbstractCastDoubleFunction *subject)
-        : data(data_set), subject(subject) {}
+        : subject(subject), data(data_set) {}
 
 PerformanceTester::PerformanceTester(const PerformanceTester &other)
         : subject(other.subject), data(new std::vector<double>{*other.data}) {}
@@ -70,7 +69,7 @@ void PerformanceTester::_calculate_cast_result() {
     for (auto &elem : *data) {
         char_count += subject->cast(elem).length();
     }
-    avg_num_length = (double) char_count / data->size();
+    avg_num_length = static_cast<double>(char_count) / data->size();
 }
 
 std::string PerformanceTester::get_result() {
@@ -81,21 +80,21 @@ std::string PerformanceTester::get_result() {
         run_speed_test();
     }
     std::stringstream result;
-    result << "Casting double using " << subject->get_name() << ":"
-           << "\nTool description:\n\t" << subject->get_description()
+    result << "###### Casting double using " << subject->get_name() << " ######"
+           << "\nMethod Name:\t\t" << subject->get_name()
+           << "\nTool description:\n\t" << subject->get_description() << "\n"
            << "\nSpeed test:"
-              "\n\tSeconds:\t" << sec
-           << "\n\tMilliseconds:\t" << m_sec
-           << "\n\tMicroseconds:\t" << u_sec
-           << "\n\tCharacters number:\t" << char_count
-           << "\nAvg numbers length:\t" << avg_num_length;
+              "\n\tSeconds:\t\t\t" << sec
+           << "\n\tMilliseconds:\t\t" << m_sec
+           << "\n\tMicroseconds:\t\t" << u_sec << "\n"
+           << "\nCharacters number:\t\t" << char_count
+           << "\nAvg numbers length:\t\t" << avg_num_length;
     return result.str();
 }
 
 void PerformanceTester::dump_result(const std::string &file_name) {
     std::ofstream file(file_name, std::ofstream::out);
-    // TODO: test dumping
-    file << get_result() << std::endl;
+    file << get_result() << "\n\n#$DATA_START$#" << std::endl;
     for (auto &elem : *data) {
         file << subject->cast(elem) << "\n";
     }
@@ -104,13 +103,13 @@ void PerformanceTester::dump_result(const std::string &file_name) {
 
 void PerformanceTester::print_data() const {
     for (auto &elem : *data) {
-        printf("%.14lf\n", elem);
+        printf("%.14f\n", elem);
     }
 }
 
 // default 'times' value is 1
-void PerformanceTester::_update_time_record(std::chrono::high_resolution_clock::time_point start,
-                                            std::chrono::high_resolution_clock::time_point finish,
+void PerformanceTester::_update_time_record(const std::chrono::high_resolution_clock::time_point &start,
+                                            const std::chrono::high_resolution_clock::time_point &finish,
                                             long long times) {
     sec = std::min(std::chrono::duration_cast<std::chrono::seconds>(finish - start).count() / times, sec);
     m_sec = std::min(std::chrono::duration_cast<std::chrono::milliseconds>(finish - start).count() / times, m_sec);
@@ -123,6 +122,9 @@ void PerformanceTester::_swap(PerformanceTester &other) {
 }
 
 void PerformanceTester::_load_data(const std::string &f_name) {
+    if (!boost::filesystem::exists(f_name)) {
+        throw std::invalid_argument("File " + f_name + " not found!");
+    }
     auto *tmp_data = new std::vector<double>();
     std::ifstream file(f_name);
     std::istringstream str_stream(read_stream_into_string(file));

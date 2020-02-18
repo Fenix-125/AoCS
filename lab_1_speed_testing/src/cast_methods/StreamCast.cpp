@@ -2,14 +2,18 @@
 // Created by fenix on 2/13/20.
 //
 
+#include <iomanip>
 #include "../../include/cast_methods/StreamCast.h"
 
 
-// Need to be cleared before use!!!
+StreamCast::StreamCast() {
+    stream << std::fixed << std::setprecision(14);
+}
+
 std::string StreamCast::cast(double value) {
-    stream.str("");  // TODO: test if it clear the stream
+    stream.str("");
     stream << value;
-    return std::string();
+    return stream.str();
 }
 
 std::string StreamCast::get_description() const {

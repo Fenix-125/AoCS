@@ -50,8 +50,8 @@ private:
 
     void _swap(PerformanceTester &other);
 
-    void _update_time_record(std::chrono::high_resolution_clock::time_point start,
-                             std::chrono::high_resolution_clock::time_point finish,
+    void _update_time_record(const std::chrono::high_resolution_clock::time_point &start,
+                             const std::chrono::high_resolution_clock::time_point &finish,
                              long long times = 1);
 
     void _calculate_cast_result();

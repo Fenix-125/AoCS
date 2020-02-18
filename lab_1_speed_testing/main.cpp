@@ -51,8 +51,9 @@ int main(int argc, char **argv) {
 
     PerformanceTester tester(argv[2], test_func);
     tester.run_speed_test(test_times);
-    tester.dump_result(argv[2]);
+    tester.dump_result(argv[3]);
+    std::cout << tester.get_result() << std::endl;
 
-    delete test_func; // TODO: test if AbstractCastDoubleFunction is safe deallocate
+    delete test_func;
     return 0;
 }
