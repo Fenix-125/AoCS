@@ -1,3 +1,0 @@
-/home/fenix/pr/subj/AoCS/cpp_try/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/fenix/pr/subj/AoCS/cpp_try/cmake-build-debug/CMakeFiles/cpp_try.dir
-/home/fenix/pr/subj/AoCS/cpp_try/cmake-build-debug/CMakeFiles/edit_cache.dir
