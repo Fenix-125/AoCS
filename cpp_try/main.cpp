@@ -1,119 +1,61 @@
 #include <iostream>
-#include <vector>
-#include <fstream>
-#include <map>
-#include <cstring>
+#include <algorithm>
 
-class Test {
+template<typename T>
+class MyVector {
+    T *data = nullptr;
+    size_t size_m, capacity_m;
+
 public:
-    Test() {
-        std::cout << "test create" << std::endl;
-    }
-
-    ~Test() {
-        std::cout << "deleted test" << std::endl;
-    }
-};
-
-
-class MyString {
-public:
-    char *data_m = nullptr;
-    size_t size_m = 0, capacity_m = 0;
-
-    MyString(const char *str) {
-        size_m = strlen(str);
-        size_m = size_m + 1;
-        data_m = new char[capacity_m];
-        strcpy(data_m, str);
-    }
-
-    MyString() : capacity_m(16) {
-        data_m = new char[capacity_m];
-    }
-
-    ~MyString() {
-        delete[] data_m;
-    }
-
-    size_t size() const {
-        return size_m;
-    }
-
-    char &operator[](size_t i) {
-        return data_m[i];
-    }
-
-    const char &operator[](size_t i) const {
-        return data_m[i];
-    }
-
-    MyString(const MyString &arg) : capacity_m(arg.capacity_m), size_m(arg.size_m) {
-        data_m = new char[capacity_m];
+    MyVector(size_t in_size = 0) : size_m(in_size), capacity_m(std::max<size_t>(in_size, 16)) {
+        data = new T[capacity_m];
         for (size_t i = 0; i < size_m; ++i) {
-            data_m[i] = arg.data_m[i];
+            data[i] = T{};
         }
     }
 
-    void swap(MyString &other) {
-        std::swap(size_m, other.size_m);
-        std::swap(capacity_m, other.capacity_m);
-        std::swap(data_m, other.data_m);
-    }
+    MyVector(const MyVector &) = delete;
 
-    MyString &operator=(const MyString &arg) {
-        if (&arg == this) { return *this; }
-        MyString temp{arg};
-        temp.swap(*this);
-        return *this;
+    MyVector &operator=(const MyVector &) = delete;
+
+    ~MyVector() {
+        delete[] data;
     }
 };
 
-void file_read() {
-    std::ifstream file("f_inp.txt");
-    if (!file) {
-        std::cerr << "Error opening file!" << std::endl;
-    }
 
-    int x;
-    std::vector<int> v;
-    while (file >> x) {
-        v.push_back(x);
-    }
+template<typename T, size_t N>
+class MyArray {
+    T data[N];
+public:
+    constexpr size_t size() const { return N; }
+};
 
-    for (auto &y: v) {
-        std::cout << y << std::endl;
-    }
-    file.close();
-}
 
-void array_test() {
-    int *pi = new int;
-    *pi = 3;
-    delete pi;
+template<>
+class MyVector<bool> {
+};
 
-    int *p = new int[100];
-    delete[] p;
 
-    size_t N;
-    std::cin >> N;
-    int *pp = new int[N];
-    delete[] pp;
-}
+template<size_t N>
+class MyArray<bool, N> {
+};
 
-void map_work() {
-    std::map<std::string, int> my_map;
-    my_map["key"] = 1;
-//    std::cout << my_map["key"] << std::endl;
-    for (auto &x : my_map) {
-        std::cout << x.first << " - " << x.second << std::endl;
-    }
-}
+
+template<size_t N>
+struct fact {
+    static constexpr size_t val = fact<N - 1>::val * N;
+};
+
+template<>
+struct fact<0> {
+    static constexpr size_t val = 0;
+};
 
 int main() {
-//    std::cout << "Hello, World!" << std::endl;
-//    file_read();
-    map_work();
+
+    MyVector<int> t1{5};
+    MyVector<std::string> t2{7};
 
     return 0;
 }

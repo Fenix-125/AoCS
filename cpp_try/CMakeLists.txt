@@ -3,4 +3,4 @@ project(cpp_try)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(cpp_try main.cpp)
+add_executable(cpp_try main.cpp archive.cpp)
