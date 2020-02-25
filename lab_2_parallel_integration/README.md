@@ -12,12 +12,15 @@
                     
                 In intervals: x = -10..10; y = -10 .. 10.
                 
-    Function: $$ f(x_1, x_2) = \sum_{i=1}^{m} c_i exp(- \frac{1}{\pi} ((x_1 - a_{1i})^2 + (x_2 - a_{2i})^2)) cos(\pi((x_1 - a_{1i})^2 + (x_2 - a_{2i})^2)) $$
+    Latex Function Formula: 
+    $$ f(x_1, x_2) = \sum_{i=1}^{m} c_i exp(- \frac{1}{\pi} ((x_1 - a_{1i})^2 + (x_2 - a_{2i})^2)) cos(\pi((x_1 - a_{1i})^2 + (x_2 - a_{2i})^2)) $$
     
     Expected result: -1.604646665
     Task Number:    4
     Author:         Yuriy Pasichnyk 
 ----
+### Function:
+![formula](https://render.githubusercontent.com/render/math?math=f(x_1,x_2)=\sum_{i=1}^{m}c_i%20exp(-\frac{1}{\pi}%20((x_1%20-%20a_{1i})^2%20+%20(x_2%20-%20a_{2i})^2))%20cos(\pi((x_1%20-%20a_{1i})^2%20+%20(x_2%20-%20a_{2i})^2)))
 ### Project Structure
 
     - [cmake-build-debug]   # build directory
