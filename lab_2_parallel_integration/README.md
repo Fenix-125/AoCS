@@ -1,4 +1,4 @@
-## Lab 1 (performance testing)
+## Lab 2 (performance testing)
 
     Topic:      Two variables integral parallel calculation.
     
