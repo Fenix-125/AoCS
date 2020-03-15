@@ -1,0 +1,32 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/fenix/pr/subj/AoCS/FPGA/test2/simulation/modelsim
+vcounter
+!s110 1583406974
+!i10b 1
+!s100 ^Y^hoC;EF7b[@bm^5C>U]0
+I127Q9Ki6DMkhNm2Y9NG?B1
+VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1583403840
+8/home/fenix/pr/subj/AoCS/FPGA/test2/counter.v
+F/home/fenix/pr/subj/AoCS/FPGA/test2/counter.v
+L0 1
+OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1583406974.000000
+!s107 /home/fenix/pr/subj/AoCS/FPGA/test2/counter.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/fenix/pr/subj/AoCS/FPGA/test2|/home/fenix/pr/subj/AoCS/FPGA/test2/counter.v|
+!i113 1
+o-vlog01compat -work work
+!s92 -vlog01compat -work work +incdir+/home/fenix/pr/subj/AoCS/FPGA/test2
+tCvgOpt 0

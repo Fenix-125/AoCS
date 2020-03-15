@@ -15,15 +15,15 @@ endif ()
 #set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_BUILD_TYPE Release)
 
-
+find_package(Threads REQUIRED)
 find_package(Boost COMPONENTS filesystem program_options system REQUIRED)
 #find_package(Qt5Core REQUIRED)
 INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIR})
 #INCLUDE_DIRECTORIES(${Qt5Core_INCLUDE_DIR})
 
 file(GLOB_RECURSE SRC "include/*.h" "src/*.cpp")
-
 add_executable(lab_2_parallel_integration main.cpp ${SRC})
+TARGET_LINK_LIBRARIES(lab_2_parallel_integration LINK_PUBLIC ${CMAKE_THREAD_LIBS_INIT})
 TARGET_LINK_LIBRARIES(lab_2_parallel_integration LINK_PUBLIC ${Boost_LIBRARIES})
 #TARGET_LINK_LIBRARIES(lab_2_parallel_integration LINK_PUBLIC ${Qt5Core_LIBRARIES})
 #set_property(TARGET lab_2_parallel_integration PROPERTY POSITION_INDEPENDENT_CODE ON)

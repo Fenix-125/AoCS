@@ -16,34 +16,44 @@ public:
 
     ~ConfigFileOpt() = default;
 
-    ConfigFileOpt(const ConfigFileOpt &other);
+    void parse(const std::string &file_name);
 
-    ConfigFileOpt &operator=(const ConfigFileOpt &arg);
+    double get_abs_pars() const { return abs_pars; }
 
-    void parse(std::string &file_name);
+    double get_rel_pres() const { return rel_pres; }
 
-    double get_abs_pars() { return abs_pars; }
+    uint16_t get_flow_num() const { return flow_num; }
 
-    double get_rel_pres() { return rel_pres; }
+    size_t get_init_steps() const { return init_steps; }
 
-    double get_exp_sol() { return exp_sol; }
+    size_t get_max_steps() const { return max_steps; }
 
-    size_t get_flow_num() { return flow_num; }
+    size_t get_m() const { return m; }
 
-    std::pair<double, double> get_x() { return x; }
+    std::vector<double> get_a1() const { return a1; }
 
-    std::pair<double, double> get_y() { return y; }
+    std::vector<double> get_a2() const { return a2; }
+
+    std::vector<double> get_c() const { return c; }
+
+    std::pair<double, double> get_x() const { return x; }
+
+    std::pair<double, double> get_y() const { return y; }
 
 private:
-    void _init_opt_description();
+    void init_opt_description();
 
-    static std::string _assert_file_exist(std::string &f_name);
+    static std::string assert_file_exist(const std::string &f_name);
 
-    void _assert_valid_opt_vals() const;
+    void assert_valid_opt_vals() const;
 
-    double abs_pars = 0.0, rel_pres = 0.0, exp_sol = 0.0;
-    size_t flow_num = 1;
-    std::pair<double, double> x{0.0, 0.0};
+    double abs_pars = 0.0, rel_pres = 0.0;
+    size_t init_steps = 0, max_steps = 0, m = 0;
+    uint16_t flow_num = 1;
+
+    std::vector<double> a1{}, a2{}, c{};
+    std::pair<double, double>
+            x{0.0, 0.0};
     std::pair<double, double> y{0.0, 0.0};
 
     boost::program_options::options_description opt_conf{"Config File Options"};
