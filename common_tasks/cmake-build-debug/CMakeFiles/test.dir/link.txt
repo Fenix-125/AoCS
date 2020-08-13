@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -Wextra -g   CMakeFiles/test.dir/main.cpp.o  -o test  -lpthread /usr/lib64/libboost_filesystem.so.1.72.0 /usr/lib64/libboost_program_options.so.1.72.0 /usr/lib64/libboost_system.so.1.72.0 /usr/lib64/libboost_locale.so.1.72.0 /usr/lib64/libboost_system.so.1.72.0 /usr/lib64/libboost_chrono.so.1.72.0 /usr/lib64/libboost_thread.so.1.72.0 -lpthread 

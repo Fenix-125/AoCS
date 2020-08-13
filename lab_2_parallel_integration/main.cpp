@@ -58,7 +58,7 @@ int main(int argc, char *argv[]) {
     double rel_err = -1; // Just guard value
 
 //  #####################   Main Calculation Cycle   ######################
-// #define PRINT_INTERMEDIATE_STEPS
+ #define PRINT_INTERMEDIATE_STEPS
     while (to_continue) {
 
 #ifdef PRINT_INTERMEDIATE_STEPS

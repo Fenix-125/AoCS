@@ -1,0 +1,3 @@
+/home/fenix/pr/subj/AoCS/common_tasks/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/fenix/pr/subj/AoCS/common_tasks/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/fenix/pr/subj/AoCS/common_tasks/cmake-build-debug/CMakeFiles/test.dir

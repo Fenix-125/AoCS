@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/fenix/pr/subj/AoCS/common_tasks/main.cpp
+./src/my_async.h
+/home/fenix/pr/subj/AoCS/common_tasks/src/my_async.h
+
+/home/fenix/pr/subj/AoCS/common_tasks/src/my_async.h
+future
+-
+iostream
+-
+
